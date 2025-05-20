@@ -29,7 +29,7 @@
       color: #fff;
     }
 
-    nav ul li {
+    nav ul li, .logo {
       position: relative;
       cursor: pointer;
       transition: all .5s;
@@ -43,7 +43,6 @@
 
     nav ul li a {
       text-decoration: none;
-      color: var(--text-dark);
       font-weight: 500;
       transition: color 0.3s ease;
     }
@@ -107,3 +106,30 @@
       font-size: 0.875rem;
       color: #6b7280;
     }
+
+    /* hero section  */
+.hero {
+    background-image: url(/assests/image.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.hero p {
+    text-align: center;
+    width: 32rem;
+    margin: 20px auto;
+}
+.carousel-caption {
+  background-color: rgba(148, 144, 144, 0.5);
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+.carousel-item .img{
+width: 90%;
+margin: auto;
+height: 70vh;
+}

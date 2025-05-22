@@ -247,22 +247,22 @@ height: 70vh;
   list-style-type: none;
 }
 
-.leads{
- display: grid;
- grid-template-columns: 35% 35% 35%;
-  width: 100%;
-  margin: 10px auto;
-}
+
 .lead{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 90%;
+  width: 100%;
   margin: 10px auto;
   
 }
+
+.leads{
+  width: 100% !important;
+  margin: 20px auto !important;
+}
 .chief{
-  width: 95% !important;
+  width: 100% !important;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -324,5 +324,8 @@ height: 70vh;
         right: 0;
         padding: 20px;
       }
+      .carousel-item .img{
+width: 100%;
+}
       
     }

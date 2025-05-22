@@ -12,6 +12,9 @@
     />
     <link rel="stylesheet" href="/style.css" />
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+    <style>
+       
+    </style>
   </head>
   <body>
     <div class="event">
@@ -20,6 +23,10 @@
       <header>
         <div class="m-2 nav">
           <div class="logo">IIC</div>
+          <div class="search-div">
+  <input type="text" class="search-input" placeholder="Search...">
+  <button class="search-btn">Search</button>
+</div>
           <nav>
             <ul id="desktop-nav">
               <li class="tabs homes p-2 rounded">Home</li>
@@ -34,6 +41,16 @@
           </div>
         </div>
       </header>
+
+
+
+       <div class="header">
+    <h1>Ijebu-Ife Events</h1>
+    <p>Celebrating the vibrant cultural and community events of Ijebu-Ife</p>
+  </div>
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4" id="event-container"></div>
+  </div>
 
       <!-- Footer -->
       <footer>
@@ -104,6 +121,7 @@
     </div>
 
     <script src="/script/all.js"></script>
+    <script src="/script/event.js"></script>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"

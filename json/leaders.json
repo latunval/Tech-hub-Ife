@@ -1,0 +1,81 @@
+[
+  {
+    "name": "Oba Adesesan Afolorunso",
+    "quote": "A visionary monarch dedicated to modernizing Ijebu-Ife while preserving its rich cultural heritage .",
+    "avatarColor": "#2c3e50",
+    "img": "/images/oba.jpg"
+  },
+  {
+    "name": "Ven. Jacob Rotimi Olowomeye",
+    "quote": "A devoted spiritual leader whose guidance at Christ Anglican Church Iwade strengthens the moral fabric of Ijebu-Ife.",
+    "avatarColor": "#6610f2",
+    "img": "/images/pastor.jpg"
+  },
+  {
+    "name": "Mr. Akeem Ogunkoya",
+    "quote": "A committed community figure whose efforts as Agbaman uplift Ijebu-Ife’s cultural and social vitality.",
+    "avatarColor": "#e83e8c",
+    "img": "/images/agba.jpg"
+  },
+  {
+    "name": "Abdulsalam Ibrahim",
+    "quote": "A unifying spiritual leader as Chief Imam, fostering peace and interfaith harmony in Ijebu-Ife’s diverse community and fostering community unity. ",
+    "avatarColor": "#fd7e14",
+    "img": "/images/imam.jpg"
+  },
+  {
+    "name": "Mr. Ademola Adenubi",
+    "quote": "An innovative entrepreneur whose leadership at Edutams Limited drives educational and economic growth in Ijebu-Ife.",
+    "avatarColor": "#20c997",
+    "img": "/images/ceo.jpg"
+  },
+  {
+    "name": "Rear Admiral Kolawole Olumide Oguntuga",
+    "quote": "A beacon of discipline and excellence, inspiring Ijebu-Ife’s youth to pursue greatness through service and resilience.",
+    "avatarColor": "#34495e",
+    "img": ""
+  },
+  {
+    "name": "Chief P.O. Orunmuyi",
+    "quote": "A passionate advocate for youth empowerment and cultural preservation in Ijebu-Ife, driving progress through selfless leadership.",
+    "avatarColor": "#495057",
+    "img": ""
+  },
+  {
+    "name": "Chief S.O. Ogundare",
+    "quote": "A steadfast pillar of Ijebu-Ife, championing community welfare and traditional values with unwavering commitment.",
+    "avatarColor": "#6c757d",
+    "img": ""
+  },
+  {
+    "name": "Chief Adetayo Adenuga",
+    "quote": "A generous benefactor whose contributions to Ijebu-Ife’s development uplift lives and strengthen communal bonds.",
+    "avatarColor": "#007bff",
+    "img": ""
+  },
+  {
+    "name": "Prince Oyebanjo Amos",
+    "quote": "A trailblazer in social integration, fostering harmony and growth within Ijebu-Ife’s diverse community.",
+    "avatarColor": "#28a745",
+    "img": ""
+  },
+  {
+    "name": "Chief Olufemi Olukayode",
+    "quote": "A guardian of tradition, promoting Ijebu-Ife’s cultural legacy through dedicated leadership and community service.",
+    "avatarColor": "#dc3545",
+    "img": ""
+  },
+  {
+    "name": "Olaitan Agboola",
+    "quote": "A dynamic ambassador of Ijebu-Ife, amplifying its cultural pride and influence on a national stage.",
+    "avatarColor": "#ffc107",
+    "img": ""
+  },
+  {
+    "name": "Chief Olugbenga Shomade",
+    "quote": "A respected leader whose wisdom and advocacy elevate Ijebu-Ife’s voice in regional development.",
+    "avatarColor": "#17a2b8",
+    "img": ""
+  }
+  
+]

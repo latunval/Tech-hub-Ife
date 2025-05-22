@@ -5,18 +5,18 @@
     "short_description": "A traditional Ifa initiation ceremony for women in Ijebu-Ife, involving spiritual rites and Yoruba religious practices to honor Ifa traditions.",
     "images": [
       {
-        "url": "https://trip-suggest.com/video/tefa-initiation-2008",
+        "url": "/images/tafa-women.png",
         "description": "Video still from Tefa initiation in Eposo Remo, near Ijebu-Ife, showing women in traditional white attire during the ceremony."
       }
     ]
   },
   {
     "title": "Agemo Festival",
-    "date": "July (Annual, exact date varies)",
+    "date": "July",
     "short_description": "A regional Ijebu festival honoring the Agemo deity, with Ijebu-Ife priests participating in rituals, prayers for fertility, and community celebrations.",
     "images": [
       {
-        "url": "https://nigeriagalleria.com/images/agemo-festival.jpg",
+        "url": "/images/agemo.png",
         "description": "Priests in colorful traditional attire performing rituals during the Agemo Festival in Ijebuland."
       }
     ]
@@ -27,18 +27,18 @@
     "short_description": "A community event in Ijebu-Ife honoring Rear Admiral Kolawole Oguntuga for his Nigerian Navy service, attended by dignitaries like Governor Dapo Abiodun.",
     "images": [
       {
-        "url": "https://ogbomosoinsightonline.com.ng/images/oguntuga-celebration.jpg",
+        "url": "/images/celebration.png",
         "description": "Rear Admiral Oguntuga with traditional leaders and dignitaries at the Ijebu-Ife palace during the celebration."
       }
     ]
   },
   {
     "title": "Ajalorun Coronation Anniversary",
-    "date": "June (Annual, exact date varies)",
+    "date": "June (exact date varies)",
     "short_description": "Annual celebration of Oba Adesesan Oguntayo’s coronation as Ajalorun, featuring community prayers, cultural displays, and palace festivities.",
     "images": [
       {
-        "url": "https://citypeopleonline.com/images/ajalorun-coronation.jpg",
+        "url": "/images/corelation.png",
         "description": "Oba Adesesan Oguntayo in regal attire during coronation anniversary celebrations at Ijebu-Ife palace."
       }
     ]
@@ -49,19 +49,119 @@
     "short_description": "Weekly interdenominational prayers by the Ijebu-Ife Christian Association at the Ajalorun’s palace for community peace and prosperity.",
     "images": [
       {
-        "url": "https://example.com/ijebu-ife-prayers-placeholder.jpg",
+        "url": "/images/church.png",
         "description": "Community members gathered at the Ijebu-Ife palace for weekly Christian prayers."
       }
     ]
   },
   {
     "title": "Ijebu-Ife Community Health Outreach",
-    "date": "November (Annual, exact date varies)",
+    "date": "November ( exact date varies)",
     "short_description": "A health initiative supported by the Ajalorun, providing free eye tests, medical checkups, and supplies to Ijebu-Ife residents.",
     "images": [
       {
-        "url": "https://example.com/ijebu-ife-health-outreach-placeholder.jpg",
+        "url": "/images/health.png",
         "description": "Medical personnel attending to residents during a health outreach at Ijebu-Ife General Hospital."
+      }
+    ]
+  },
+  {
+    "title": "Ojude Oba Festival Ijebu-Ife",
+    "date": "2025-06-25",
+    "images": [
+      {
+        "url": "https://example.com/images/ojude-oba-ife.jpg",
+        "description": "Vibrant celebration honoring the Ajalorun with colorful parades."
+      }
+    ]
+  },
+  {
+    "title": "Ijebu-Ife Cultural Day",
+    "date": "2025-07-10",
+    "images": [
+      {
+        "url": "https://example.com/images/cultural-day-ife.jpg",
+        "description": "Showcasing Ijebu-Ife's music, dance, and traditional attire."
+      }
+    ]
+  },
+  {
+    "title": "Annual Ajalorun Coronation Anniversary",
+    "date": "2025-08-16",
+    "images": [
+      {
+        "url": "https://example.com/images/coronation-ife.jpg",
+        "description": "Commemorating Oba Adesesan Oguntayo’s reign with community prayers."
+      }
+    ]
+  },
+  {
+    "title": "Ijebu-Ife Youth Empowerment Workshop",
+    "date": "2025-09-20",
+    "images": [
+      {
+        "url": "https://example.com/images/youth-workshop.jpg",
+        "description": "Training youth in entrepreneurship and skills development."
+      }
+    ]
+  },
+  {
+    "title": "Ijebu-Ife Farmers’ Harvest Festival",
+    "date": "2025-10-05",
+    "images": [
+      {
+        "url": "https://example.com/images/harvest-festival.jpg",
+        "description": "Celebrating local farmers with displays of yam and cassava harvests."
+      }
+    ]
+  },
+  {
+    "title": "Ijebu-Ife Health Outreach Program",
+    "date": "2025-11-15",
+    "images": [
+      {
+        "url": "https://example.com/images/health-outreach.jpg",
+        "description": "Free medical checkups and nutrition education by Anwojue Hope Foundation."
+      }
+    ]
+  },
+  {
+    "title": "Egungun Masquerade Festival",
+    "date": "2025-12-12",
+    "images": [
+      {
+        "url": "https://example.com/images/egungun-ife.jpg",
+        "description": "Traditional masquerade dance to honor ancestors."
+      }
+    ]
+  },
+  {
+    "title": "Ijebu-Ife Community Peace Walk",
+    "date": "2026-01-10",
+    "images": [
+      {
+        "url": "https://example.com/images/peace-walk.jpg",
+        "description": "Promoting unity and peace in Ijebu-Ife with community leaders."
+      }
+    ]
+  },
+  {
+    "title": "Ijebu-Ife Education Fair",
+    "date": "2026-02-20",
+    "images": [
+      {
+        "url": "https://example.com/images/education-fair.jpg",
+        "description": "Supporting students with scholarships and career guidance."
+      }
+    ]
+  },
+  {
+    "title": "Ijebu-Ife Trade Fair",
+    "date": "2026-03-30",
+    "images": [
+      {
+        "url": "https://example.com/images/trade-fair.jpg",
+        "description": "Showcasing local crafts, Ikokore, and Ijebu garri products."
       }
     ]
   }

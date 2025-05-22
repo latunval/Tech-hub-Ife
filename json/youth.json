@@ -1,0 +1,41 @@
+[
+  {
+    "name": "Hacco",
+    "image": "/assests/chairman.jpg",
+    "description": "STEM Innovator and community volunteer, inspiring others through technology and service."
+  },
+  {
+    "name": "Alhaji Abdussalam Ibrahim",
+    "image": "/assests/imam.jpg",
+    "description": "A unifying spiritual leader as Chief Imam, fostering peace and interfaith harmony in Ijebu-Ife’s diverse community and fostering community unity. "
+  },
+  {
+    "name": "Dr Ademola Adenubi",
+    "image": "/assests/edutams.jpg",
+    "description": "An innovative entrepreneur whose leadership at Edutams Limited drives educational and economic growth in Ijebu-Ife. Innovator and community volunteer, inspiring others through technology and service."
+  },
+  {
+    "name": "Alhaji Akeem Agbaman",
+    "image": "/assests/agbaman.jpg",
+    "description": "A committed community figure whose efforts as Agbaman uplift Ijebu-Ife’s cultural and social vitality."
+  },
+  {
+    "name": "Maryam Bello",
+    "image": "/assests/youth5.jpg",
+    "description": "Young entrepreneur and tech enthusiast, empowering girls in STEM fields."
+  },
+  {
+    "name": "Tunde Ajayi",
+    "image": "/assests/youth6.jpg",
+    "description": "Community organizer and environmental advocate, leading clean-up campaigns."
+  },
+  {
+    "name": "Blessing Eze",
+    "image": "/assests/youth7.jpg",
+    "description": "Literacy champion and peer educator, helping others achieve academic success."
+  }, {
+    "name": "Blessing Eze",
+    "image": "/assests/youth7.jpg",
+    "description": "Literacy champion and peer educator, helping others achieve academic success."
+  }
+]

@@ -41,7 +41,7 @@
       color: #fff;
     }
 
-    nav ul li {
+    nav ul li, .logo, .cell {
       position: relative;
       cursor: pointer;
       transition: all .5s;
@@ -55,7 +55,6 @@
 
     nav ul li a {
       text-decoration: none;
-      color: var(--text-dark);
       font-weight: 500;
       transition: color 0.3s ease;
     }
@@ -212,3 +211,94 @@
       font-size: 0.875rem;
       color: #6b7280;
     }
+
+    /* hero section  */
+.hero {
+    background-image: url(/assests/image.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    /* flex-direction: column; */
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.hero p {
+    text-align: center;
+    width: 32rem;
+    margin: 20px auto;
+}
+.carousel-caption {
+  background-color: rgba(148, 144, 144, 0.5);
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+.carousel-item .img{
+width: 70%;
+margin: auto;
+height: 70vh;
+}
+.carousel-caption .cell{
+  list-style-type: none;
+}
+
+.leads{
+ display: grid;
+ grid-template-columns: 35% 35% 35%;
+  width: 100%;
+  margin: 10px auto;
+}
+.lead{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90%;
+  margin: 10px auto;
+  
+}
+.chief{
+  width: 95% !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.4);
+}
+.chief:hover{
+  box-shadow:  0 0 2px 5px rgba(0, 0, 0, 0.4);
+
+  /* background-color: rgba(148, 144, 144, 0.5); */
+  padding: 20px ;
+  margin: 5px;
+}
+.imgs{
+  height: 40vh !important;
+
+  /* border: 2px solid red;  */
+}
+.youth .container{
+  margin: 10px auto !important;
+  width: 90% !important;
+}
+.chief img{
+ border-radius: 20px;
+}
+.tuga{
+  width: 80%;
+  margin: 10px auto;
+}
+.more{
+  width: 30%;
+  margin: 10px auto;
+}
+

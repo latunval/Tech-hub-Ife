@@ -1,0 +1,41 @@
+[
+  {
+    "name": "Hacco",
+    "image": "/assests/chairman.jpg",
+    "description": "STEM Innovator and community volunteer, inspiring others through technology and service."
+  },
+  {
+    "name": "Alhaji Abdussalam Ibrahim",
+    "image": "/assests/imam.jpg",
+    "description": "Creative artist and youth mentor, passionate about cultural heritage and youth empowerment."
+  },
+  {
+    "name": "Dr Ademola Adenubi",
+    "image": "/assests/edutams.jpg",
+    "description": "Entrepreneur and advocate for girls’ education, leading change in her community."
+  },
+  {
+    "name": "Alhaji Akeem Agbaman",
+    "image": "/assests/agbaman.jpg",
+    "description": "Sports leader and motivational speaker, encouraging healthy living and teamwork."
+  },
+  {
+    "name": "Maryam Bello",
+    "image": "/assests/youth5.jpg",
+    "description": "Young entrepreneur and tech enthusiast, empowering girls in STEM fields."
+  },
+  {
+    "name": "Tunde Ajayi",
+    "image": "/assests/youth6.jpg",
+    "description": "Community organizer and environmental advocate, leading clean-up campaigns."
+  },
+  {
+    "name": "Blessing Eze",
+    "image": "/assests/youth7.jpg",
+    "description": "Literacy champion and peer educator, helping others achieve academic success."
+  }, {
+    "name": "Blessing Eze",
+    "image": "/assests/youth7.jpg",
+    "description": "Literacy champion and peer educator, helping others achieve academic success."
+  }
+]

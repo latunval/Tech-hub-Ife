@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduManage - School Management System</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #64748b;
+            --success-color: #16a34a;
+            --warning-color: #ea580c;
+            --danger-color: #dc2626;
+            --sidebar-bg: #1e293b;
+            --sidebar-hover: #334155;
+        }
+
+        body {
+            background-color: #f8fafc;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .sidebar {
+            background: linear-gradient(135deg, var(--sidebar-bg) 0%, #0f172a 100%);
+            min-height: 100vh;
+            width: 280px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-brand {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-brand h4 {
+            color: white;
+            font-weight: 700;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .sidebar-brand .brand-icon {
+            background: linear-gradient(135deg, var(--primary-color), #3b82f6);
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8) !important;
+            padding: 0.75rem 1.5rem;
+            margin: 0.25rem 1rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 500;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: var(--sidebar-hover);
+            color: white !important;
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(135deg, var(--primary-color), #3b82f6);
+        }
+
+        .nav-link i {
+            width: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .main-content {
+            margin-left: 280px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .header-card {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #3b82f6 100%);
+            border-radius: 20px;
+            color: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-icon.students { background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; }
+        .stat-icon.teachers { background: linear-gradient(135deg, #16a34a, #15803d); color: white; }
+        .stat-icon.classes { background: linear-gradient(135deg, #ea580c, #dc2626); color: white; }
+        .stat-icon.events { background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white; }
+
+        .table-container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+
+        .table-header {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            padding: 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .table-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 0;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), #3b82f6);
+            border: none;
+            border-radius: 12px;
+            padding: 0.5rem 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-sm {
+            padding: 0.375rem 0.75rem;
+            font-size: 0.875rem;
+            border-radius: 8px;
+        }
+
+        .badge {
+            border-radius: 8px;
+            padding: 0.375rem 0.75rem;
+            font-weight: 600;
+        }
+
+        .table {
+            margin: 0;
+        }
+
+        .table th {
+            background: #f8fafc;
+            color: #475569;
+            font-weight: 600;
+            border: none;
+            padding: 1rem;
+        }
+
+        .table td {
+            padding: 1rem;
+            vertical-align: middle;
+            border-color: #f1f5f9;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            margin-right: 0.75rem;
+        }
+
+        .form-control, .form-select {
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+            padding: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
+        }
+
+        .modal-content {
+            border-radius: 20px;
+            border: none;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border-bottom: 1px solid #e2e8f0;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .action-btn {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1rem;
+            text-decoration: none;
+            color: #475569;
+            transition: all 0.3s ease;
+            flex: 1;
+            text-align: center;
+        }
+
+        .action-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.15);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.show {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="sidebar-brand">
+            <h4>
+                <div class="brand-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                EduManage
+            </h4>
+        </div>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="#" onclick="showSection('dashboard')">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="showSection('students')">
+                    <i class="fas fa-user-graduate"></i>
+                    Students
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="showSection('teachers')">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    Teachers
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="showSection('classes')">
+                    <i class="fas fa-door-open"></i>
+                    Classes
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="showSection('schedule')">
+                    <i class="fas fa-calendar-alt"></i>
+                    Schedule
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="showSection('grades')">
+                    <i class="fas fa-chart-line"></i>
+                    Grades
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="showSection('attendance')">
+                    <i class="fas fa-check-circle"></i>
+                    Attendance
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="showSection('reports')">
+                    <i class="fas fa-file-alt"></i>
+                    Reports
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Dashboard Section -->
+        <div id="dashboard" class="content-section active">
+            <div class="header-card">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h2 class="mb-2">Welcome to EduManage</h2>
+                        <p class="mb-0 opacity-75">Your comprehensive school management solution</p>
+                    </div>
+                    <div class="text-end">
+                        <h5 class="mb-0" id="currentDate"></h5>
+                        <small class="opacity-75">Today</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="stat-card">
+                        <div class="stat-icon students">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <h3 class="fw-bold mb-1">1,247</h3>
+                        <p class="text-muted mb-0">Total Students</p>
+                        <small class="text-success"><i class="fas fa-arrow-up"></i> 5% from last month</small>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="stat-card">
+                        <div class="stat-icon teachers">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <h3 class="fw-bold mb-1">84</h3>
+                        <p class="text-muted mb-0">Active Teachers</p>
+                        <small class="text-success"><i class="fas fa-arrow-up"></i> 2 new this month</small>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="stat-card">
+                        <div class="stat-icon classes">
+                            <i class="fas fa-door-open"></i>
+                        </div>
+                        <h3 class="fw-bold mb-1">42</h3>
+                        <p class="text-muted mb-0">Total Classes</p>
+                        <small class="text-warning"><i class="fas fa-minus"></i> Same as last month</small>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="stat-card">
+                        <div class="stat-icon events">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <h3 class="fw-bold mb-1">12</h3>
+                        <p class="text-muted mb-0">Upcoming Events</p>
+                        <small class="text-info"><i class="fas fa-calendar"></i> This month</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quick-actions">
+                <a href="#" class="action-btn" onclick="showSection('students')">
+                    <i class="fas fa-plus mb-2 d-block"></i>
+                    Add Student
+                </a>
+                <a href="#" class="action-btn" onclick="showSection('teachers')">
+                    <i class="fas fa-user-plus mb-2 d-block"></i>
+                    Add Teacher
+                </a>
+                <a href="#" class="action-btn" onclick="showSection('schedule')">
+                    <i class="fas fa-calendar-plus mb-2 d-block"></i>
+                    Create Schedule
+                </a>
+                <a href="#" class="action-btn" onclick="showSection('reports')">
+                    <i class="fas fa-chart-bar mb-2 d-block"></i>
+                    View Reports
+                </a>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header">
+                    <h5 class="table-title">Recent Activity</h5>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td class="fw-semibold">10:30 - 11:30</td>
+                            <td><span class="badge bg-info">Biology - 11B</span></td>
+                            <td><span class="badge bg-primary">Math - 10A</span></td>
+                            <td><span class="badge bg-success">Physics - 11A</span></td>
+                            <td><span class="badge bg-warning">Chemistry - 12A</span></td>
+                            <td><span class="badge bg-secondary">English - 10B</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Grades Section -->
+        <div id="grades" class="content-section">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Grade Management</h2>
+                <button class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Add Grades
+                </button>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <select class="form-select">
+                        <option>Select Class</option>
+                        <option>Grade 10A</option>
+                        <option>Grade 10B</option>
+                        <option>Grade 11A</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <select class="form-select">
+                        <option>Select Subject</option>
+                        <option>Mathematics</option>
+                        <option>Physics</option>
+                        <option>Chemistry</option>
+                        <option>Biology</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <select class="form-select">
+                        <option>Select Term</option>
+                        <option>First Term</option>
+                        <option>Second Term</option>
+                        <option>Third Term</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header">
+                    <h5 class="table-title">Student Grades - Mathematics (Grade 10A)</h5>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Student</th>
+                            <th>Test 1</th>
+                            <th>Test 2</th>
+                            <th>Assignment</th>
+                            <th>Final Exam</th>
+                            <th>Total</th>
+                            <th>Grade</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar">AJ</div>
+                                    <span>Alice Johnson</span>
+                                </div>
+                            </td>
+                            <td>85</td>
+                            <td>92</td>
+                            <td>78</td>
+                            <td>88</td>
+                            <td>86</td>
+                            <td><span class="badge bg-success">A</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar">BS</div>
+                                    <span>Bob Smith</span>
+                                </div>
+                            </td>
+                            <td>76</td>
+                            <td>82</td>
+                            <td>90</td>
+                            <td>79</td>
+                            <td>82</td>
+                            <td><span class="badge bg-primary">B+</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Attendance Section -->
+        <div id="attendance" class="content-section">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Attendance Management</h2>
+                <button class="btn btn-primary">
+                    <i class="fas fa-check"></i> Mark Attendance
+                </button>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <select class="form-select">
+                        <option>Select Class</option>
+                        <option>Grade 10A</option>
+                        <option>Grade 10B</option>
+                        <option>Grade 11A</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <input type="date" class="form-control" value="2024-01-15">
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-outline-secondary w-100">
+                        <i class="fas fa-search"></i> View Attendance
+                    </button>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header">
+                    <h5 class="table-title">Attendance Record - Grade 10A (Today)</h5>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Student</th>
+                            <th>Student ID</th>
+                            <th>Status</th>
+                            <th>Time In</th>
+                            <th>Time Out</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar">AJ</div>
+                                    <span>Alice Johnson</span>
+                                </div>
+                            </td>
+                            <td>STU001</td>
+                            <td><span class="badge bg-success">Present</span></td>
+                            <td>08:15 AM</td>
+                            <td>03:30 PM</td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-warning">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar">BS</div>
+                                    <span>Bob Smith</span>
+                                </div>
+                            </td>
+                            <td>STU002</td>
+                            <td><span class="badge bg-warning">Late</span></td>
+                            <td>08:45 AM</td>
+                            <td>03:30 PM</td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-warning">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar">CD</div>
+                                    <span>Carol Davis</span>
+                                </div>
+                            </td>
+                            <td>STU003</td>
+                            <td><span class="badge bg-danger">Absent</span></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-warning">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Reports Section -->
+        <div id="reports" class="content-section">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Reports & Analytics</h2>
+                <button class="btn btn-primary">
+                    <i class="fas fa-download"></i> Export Reports
+                </button>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="stat-card text-center">
+                        <div class="stat-icon students mx-auto">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <h3 class="fw-bold mb-1">94.2%</h3>
+                        <p class="text-muted mb-0">Average Attendance</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="stat-card text-center">
+                        <div class="stat-icon teachers mx-auto">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="fw-bold mb-1">87.5%</h3>
+                        <p class="text-muted mb-0">Pass Rate</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="stat-card text-center">
+                        <div class="stat-icon classes mx-auto">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3 class="fw-bold mb-1">4.2</h3>
+                        <p class="text-muted mb-0">Average GPA</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="stat-card text-center">
+                        <div class="stat-icon events mx-auto">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3 class="fw-bold mb-1">15</h3>
+                        <p class="text-muted mb-0">Honor Students</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="table-container">
+                        <div class="table-header">
+                            <h5 class="table-title">Top Performing Classes</h5>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Class</th>
+                                    <th>Average Grade</th>
+                                    <th>Attendance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Grade 12A</td>
+                                    <td><span class="badge bg-success">92.5%</span></td>
+                                    <td>96.8%</td>
+                                </tr>
+                                <tr>
+                                    <td>Grade 11B</td>
+                                    <td><span class="badge bg-success">89.3%</span></td>
+                                    <td>94.2%</td>
+                                </tr>
+                                <tr>
+                                    <td>Grade 10A</td>
+                                    <td><span class="badge bg-primary">85.7%</span></td>
+                                    <td>93.5%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="table-container">
+                        <div class="table-header">
+                            <h5 class="table-title">Subject Performance</h5>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Subject</th>
+                                    <th>Average Grade</th>
+                                    <th>Pass Rate</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Mathematics</td>
+                                    <td><span class="badge bg-success">88.2%</span></td>
+                                    <td>92.1%</td>
+                                </tr>
+                                <tr>
+                                    <td>Physics</td>
+                                    <td><span class="badge bg-primary">85.6%</span></td>
+                                    <td>89.3%</td>
+                                </tr>
+                                <tr>
+                                    <td>Chemistry</td>
+                                    <td><span class="badge bg-primary">82.4%</span></td>
+                                    <td>87.5%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Student Modal -->
+    <div class="modal fade" id="addStudentModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Student</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addStudentForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">First Name</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Phone</label>
+                                    <input type="tel" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label">Date of Birth</label>
+                                    <input type="date" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label">Grade</label>
+                                    <select class="form-select" required>
+                                        <option value="">Select Grade</option>
+                                        <option value="9">Grade 9</option>
+                                        <option value="10">Grade 10</option>
+                                        <option value="11">Grade 11</option>
+                                        <option value="12">Grade 12</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label">Class</label>
+                                    <select class="form-select" required>
+                                        <option value="">Select Class</option>
+                                        <option value="A">Section A</option>
+                                        <option value="B">Section B</option>
+                                        <option value="C">Section C</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Address</label>
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Parent/Guardian Name</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Parent/Guardian Phone</label>
+                                    <input type="tel" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="addStudent()">Add Student</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Teacher Modal -->
+    <div class="modal fade" id="addTeacherModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Teacher</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addTeacherForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">First Name</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Phone</label>
+                                    <input type="tel" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Subject Specialization</label>
+                                    <select class="form-select" required>
+                                        <option value="">Select Subject</option>
+                                        <option value="mathematics">Mathematics</option>
+                                        <option value="physics">Physics</option>
+                                        <option value="chemistry">Chemistry</option>
+                                        <option value="biology">Biology</option>
+                                        <option value="english">English</option>
+                                        <option value="history">History</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Qualification</label>
+                                    <input type="text" class="form-control" placeholder="e.g., M.Sc. Mathematics" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Experience (Years)</label>
+                                    <input type="number" class="form-control" min="0" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Date of Joining</label>
+                                    <input type="date" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Address</label>
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="addTeacher()">Add Teacher</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Class Modal -->
+    <div class="modal fade" id="addClassModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Class</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addClassForm">
+                        <div class="mb-3">
+                            <label class="form-label">Class Name</label>
+                            <input type="text" class="form-control" placeholder="e.g., Grade 10C" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Grade Level</label>
+                            <select class="form-select" required>
+                                <option value="">Select Grade</option>
+                                <option value="9">Grade 9</option>
+                                <option value="10">Grade 10</option>
+                                <option value="11">Grade 11</option>
+                                <option value="12">Grade 12</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Class Teacher</label>
+                            <select class="form-select" required>
+                                <option value="">Select Teacher</option>
+                                <option value="martinez">Mrs. Martinez</option>
+                                <option value="johnson">Dr. Johnson</option>
+                                <option value="wilson">Ms. Wilson</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Room Number</label>
+                            <input type="text" class="form-control" placeholder="e.g., 205" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Maximum Capacity</label>
+                            <input type="number" class="form-control" min="1" max="50" value="30" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="addClass()">Add Class</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Initialize current date
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        // Navigation functionality
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Update active nav link
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Student search functionality
+        document.getElementById('studentSearch')?.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const tableRows = document.querySelectorAll('#studentsTable tbody tr');
+            
+            tableRows.forEach(row => {
+                const studentName = row.querySelector('td .fw-semibold').textContent.toLowerCase();
+                const studentEmail = row.querySelector('td small').textContent.toLowerCase();
+                
+                if (studentName.includes(searchTerm) || studentEmail.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
+        // Grade filter functionality
+        document.getElementById('gradeFilter')?.addEventListener('change', function(e) {
+            const selectedGrade = e.target.value;
+            const tableRows = document.querySelectorAll('#studentsTable tbody tr');
+            
+            tableRows.forEach(row => {
+                const rowGrade = row.cells[2].textContent;
+                
+                if (!selectedGrade || rowGrade.includes(selectedGrade)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
+        // Add student functionality
+        function addStudent() {
+            const form = document.getElementById('addStudentForm');
+            const formData = new FormData(form);
+            
+            // Here you would typically send the data to your backend
+            // For demo purposes, we'll just show a success message
+            alert('Student added successfully!');
+            
+            // Close modal and reset form
+            const modal = bootstrap.Modal.getInstance(document.getElementById('addStudentModal'));
+            modal.hide();
+            form.reset();
+            
+            // In a real application, you would refresh the student list here
+        }
+
+        // Add teacher functionality
+        function addTeacher() {
+            const form = document.getElementById('addTeacherForm');
+            const formData = new FormData(form);
+            
+            alert('Teacher added successfully!');
+            
+            const modal = bootstrap.Modal.getInstance(document.getElementById('addTeacherModal'));
+            modal.hide();
+            form.reset();
+        }
+
+        // Add class functionality
+        function addClass() {
+            const form = document.getElementById('addClassForm');
+            const formData = new FormData(form);
+            
+            alert('Class added successfully!');
+            
+            const modal = bootstrap.Modal.getInstance(document.getElementById('addClassModal'));
+            modal.hide();
+            form.reset();
+        }
+
+        // Simulate real-time updates
+        function updateStats() {
+            // This would typically fetch real data from your backend
+            const stats = [
+                { id: 'students', value: Math.floor(Math.random() * 50) + 1200 },
+                { id: 'teachers', value: Math.floor(Math.random() * 10) + 80 },
+                { id: 'classes', value: Math.floor(Math.random() * 5) + 40 }
+            ];
+
+            // Update would happen here in a real application
+        }
+
+        // Initialize tooltips and other Bootstrap components
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize any tooltips
+            const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+
+            // Set up periodic updates (in a real app, this would be WebSocket or polling)
+            setInterval(updateStats, 30000); // Update every 30 seconds
+        });
+
+        // Mobile sidebar toggle (for responsive design)
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('show');
+        }
+
+        // Add event listeners for mobile menu
+        if (window.innerWidth <= 768) {
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    const sidebar = document.querySelector('.sidebar');
+                    sidebar.classList.remove('show');
+                });
+            });
+        }
+    </script>
+</body>
+</html>h>Activity</th>
+                            <th>User</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>New student enrollment</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar">JD</div>
+                                    <span>John Doe</span>
+                                </div>
+                            </td>
+                            <td>2 minutes ago</td>
+                            <td><span class="badge bg-success">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>Grade submission - Math 101</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar">MS</div>
+                                    <span>Mrs. Smith</span>
+                                </div>
+                            </td>
+                            <td>15 minutes ago</td>
+                            <td><span class="badge bg-success">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>Attendance marked - Grade 10A</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar">RJ</div>
+                                    <span>Mr. Johnson</span>
+                                </div>
+                            </td>
+                            <td>30 minutes ago</td>
+                            <td><span class="badge bg-success">Completed</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Students Section -->
+        <div id="students" class="content-section">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Student Management</h2>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addStudentModal">
+                    <i class="fas fa-plus"></i> Add New Student
+                </button>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header d-flex justify-content-between align-items-center">
+                    <h5 class="table-title">All Students</h5>
+                    <div class="d-flex gap-2">
+                        <input type="text" class="form-control" placeholder="Search students..." style="width: 250px;" id="studentSearch">
+                        <select class="form-select" style="width: 150px;" id="gradeFilter">
+                            <option value="">All Grades</option>
+                            <option value="9">Grade 9</option>
+                            <option value="10">Grade 10</option>
+                            <option value="11">Grade 11</option>
+                            <option value="12">Grade 12</option>
+                        </select>
+                    </div>
+                </div>
+                <table class="table" id="studentsTable">
+                    <thead>
+                        <tr>
+                            <th>Student</th>
+                            <th>Student ID</th>
+                            <th>Grade</th>
+                            <th>Class</th>
+                            <th>Phone</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar">AJ</div>
+                                    <div>
+                                        <div class="fw-semibold">Alice Johnson</div>
+                                        <small class="text-muted">alice.johnson@email.com</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>STU001</td>
+                            <td>Grade 10</td>
+                            <td>10A</td>
+                            <td>+1 234-567-8901</td>
+                            <td><span class="badge bg-success">Active</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary me-1">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar">BS</div>
+                                    <div>
+                                        <div class="fw-semibold">Bob Smith</div>
+                                        <small class="text-muted">bob.smith@email.com</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>STU002</td>
+                            <td>Grade 11</td>
+                            <td>11B</td>
+                            <td>+1 234-567-8902</td>
+                            <td><span class="badge bg-success">Active</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary me-1">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Teachers Section -->
+        <div id="teachers" class="content-section">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Teacher Management</h2>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTeacherModal">
+                    <i class="fas fa-plus"></i> Add New Teacher
+                </button>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header">
+                    <h5 class="table-title">All Teachers</h5>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Teacher</th>
+                            <th>Employee ID</th>
+                            <th>Subject</th>
+                            <th>Classes</th>
+                            <th>Phone</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar">MS</div>
+                                    <div>
+                                        <div class="fw-semibold">Mrs. Sarah Martinez</div>
+                                        <small class="text-muted">sarah.martinez@school.edu</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>TEA001</td>
+                            <td>Mathematics</td>
+                            <td>10A, 10B, 11A</td>
+                            <td>+1 234-567-9001</td>
+                            <td><span class="badge bg-success">Active</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary me-1">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar">DJ</div>
+                                    <div>
+                                        <div class="fw-semibold">Dr. David Johnson</div>
+                                        <small class="text-muted">david.johnson@school.edu</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>TEA002</td>
+                            <td>Physics</td>
+                            <td>11A, 11B, 12A</td>
+                            <td>+1 234-567-9002</td>
+                            <td><span class="badge bg-success">Active</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary me-1">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Classes Section -->
+        <div id="classes" class="content-section">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Class Management</h2>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addClassModal">
+                    <i class="fas fa-plus"></i> Add New Class
+                </button>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="stat-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <h5 class="fw-bold">Grade 10A</h5>
+                            <span class="badge bg-primary">32 Students</span>
+                        </div>
+                        <p class="text-muted mb-2">Class Teacher: Mrs. Martinez</p>
+                        <p class="text-muted mb-3">Room: 201</p>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-sm btn-outline-primary">View Details</button>
+                            <button class="btn btn-sm btn-outline-secondary">Edit</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="stat-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <h5 class="fw-bold">Grade 11B</h5>
+                            <span class="badge bg-primary">28 Students</span>
+                        </div>
+                        <p class="text-muted mb-2">Class Teacher: Dr. Johnson</p>
+                        <p class="text-muted mb-3">Room: 305</p>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-sm btn-outline-primary">View Details</button>
+                            <button class="btn btn-sm btn-outline-secondary">Edit</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="stat-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <h5 class="fw-bold">Grade 12A</h5>
+                            <span class="badge bg-primary">25 Students</span>
+                        </div>
+                        <p class="text-muted mb-2">Class Teacher: Ms. Wilson</p>
+                        <p class="text-muted mb-3">Room: 401</p>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-sm btn-outline-primary">View Details</button>
+                            <button class="btn btn-sm btn-outline-secondary">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Schedule Section -->
+        <div id="schedule" class="content-section">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Class Schedule</h2>
+                <button class="btn btn-primary">
+                    <i class="fas fa-calendar-plus"></i> Add Schedule
+                </button>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header">
+                    <h5 class="table-title">Weekly Schedule</h5>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Monday</th>
+                            <th>Tuesday</th>
+                            <th>Wednesday</th>
+                            <th>Thursday</th>
+                            <th>Friday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="fw-semibold">08:00 - 09:00</td>
+                            <td><span class="badge bg-primary">Math - 10A</span></td>
+                            <td><span class="badge bg-success">Physics - 11A</span></td>
+                            <td><span class="badge bg-warning">Chemistry - 12A</span></td>
+                            <td><span class="badge bg-info">Biology - 11B</span></td>
+                            <td><span class="badge bg-secondary">English - 10B</span></td>
+                        </tr>
+                        <tr>
+                            <td class="fw-semibold">09:00 - 10:00</td>
+                            <td><span class="badge bg-success">Physics - 11A</span></td>
+                            <td><span class="badge bg-warning">Chemistry - 12A</span></td>
+                            <td><span class="badge bg-primary">Math - 10A</span></td>
+                            <td><span class="badge bg-secondary">English - 10B</span></td>
+                            <td><span class="badge bg-info">Biology - 11B</span></td>
+                        </tr>
+                        <tr>
+                            <t

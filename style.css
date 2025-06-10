@@ -141,9 +141,7 @@
 .search-input::placeholder {
   color: #999;
 }
-.new .search-btn {
-  
-}
+
 .new .search-div{
   /* border: 2px solid red; */
   width: 300px;
@@ -337,3 +335,27 @@ height: 70vh;
 }
 
 
+.hidden{
+  display: none;
+}
+
+
+    @media screen and (max-width:500px) {
+      .nav{
+        /* flex-direction: column; */
+        position: relative;
+      }
+      nav ul{
+        flex-direction: column;
+        /* justify-content: ; */
+        background-color:#ffffff;
+        display: none;
+        position: absolute;
+        top: 70px;
+        z-index: 1000;
+        width: 50%;
+        right: 0;
+        padding: 20px;
+      }
+      
+    }
